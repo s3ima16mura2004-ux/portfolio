@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個人開発ポートフォリオ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #131c33;
+    --ink-deep: #0b1220;
+    --washi: #f1ead9;
+    --washi-alt: #e7ddc3;
+    --vermillion: #bb3a26;
+    --vermillion-deep: #8f2a1a;
+    --gold: #b6924c;
+    --gold-soft: #d8c290;
+    --charcoal: #221e18;
+    --charcoal-soft: #55503f;
+    --font-display: "Shippori Mincho", serif;
+    --font-body: "Zen Kaku Gothic New", sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    font-family:var(--font-body);
+    background:var(--washi);
+    color:var(--charcoal);
+    line-height:1.9;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  section{position:relative;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px;}
+  :focus-visible{outline:3px solid var(--vermillion); outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;
+    background:rgba(19,28,51,0.0);
+    transition:background .4s ease, padding .4s ease, box-shadow .4s ease;
+  }
+  .nav.scrolled{
+    background:rgba(19,28,51,0.92);
+    backdrop-filter:blur(6px);
+    padding:12px 32px;
+    box-shadow:0 6px 24px rgba(0,0,0,0.18);
+  }
+  .nav-name{
+    font-family:var(--font-display);
+    font-weight:600;
+    color:var(--washi);
+    font-size:1.05rem;
+    letter-spacing:.06em;
+  }
+  .nav-links{display:flex;gap:28px;list-style:none;}
+  .nav-links a{
+    color:var(--washi-alt);
+    font-size:.86rem;
+    letter-spacing:.08em;
+    text-decoration:none;
+    position:relative;
+    padding-bottom:3px;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--gold);transition:width .3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(182,146,76,0.12), transparent 60%),
+      linear-gradient(180deg, var(--ink-deep) 0%, var(--ink) 55%, var(--ink) 100%);
+    color:var(--washi);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;
+    padding:140px 24px 90px;
+    overflow:hidden;
+  }
+  .torii{
+    position:absolute;
+    width:min(720px, 130vw);
+    opacity:0.16;
+    top:6%;
+    left:50%;
+    transform:translateX(-50%);
+    pointer-events:none;
+  }
+  .stars{position:absolute;inset:0;pointer-events:none;}
+  .stars span{
+    position:absolute;width:2px;height:2px;background:var(--gold-soft);
+    border-radius:50%;opacity:.5;
+    animation:twinkle 4s ease-in-out infinite;
+  }
+  @keyframes twinkle{0%,100%{opacity:.15;}50%{opacity:.8;}}
+
+  .eyebrow-vert{
+    writing-mode:vertical-rl;
+    font-family:var(--font-display);
+    font-size:.92rem;
+    letter-spacing:.35em;
+    color:var(--gold-soft);
+    margin-bottom:26px;
+    position:relative;
+    z-index:2;
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:clamp(2.1rem, 5.4vw, 3.6rem);
+    line-height:1.5;
+    letter-spacing:.03em;
+    position:relative;z-index:2;
+    max-width:14em;
+  }
+  .hero h1 .accent{color:var(--vermillion); font-weight:600;}
+  .hero-sub{
+    margin-top:22px;
+    font-size:1rem;
+    color:var(--washi-alt);
+    max-width:34em;
+    position:relative;z-index:2;
+  }
+
+  /* Omikuji draw */
+  .omikuji-zone{
+    margin-top:64px;
+    position:relative;z-index:2;
+    display:flex;flex-direction:column;align-items:center;gap:18px;
+  }
+  .omikuji-box{
+    width:150px;height:150px;
+    border-radius:8px;
+    background:linear-gradient(180deg, #7d2a1d, var(--vermillion-deep));
+    border:2px solid var(--gold);
+    box-shadow:0 18px 40px rgba(0,0,0,0.45), inset 0 0 0 6px rgba(182,146,76,0.15);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    font-family:var(--font-display);
+    color:var(--washi);
+    font-size:1.15rem;
+    letter-spacing:.2em;
+    writing-mode:vertical-rl;
+    transition:transform .25s ease, box-shadow .25s ease;
+    position:relative;
+  }
+  .omikuji-box:hover{transform:translateY(-4px) scale(1.02); box-shadow:0 24px 50px rgba(0,0,0,0.5);}
+  .omikuji-box:active{transform:translateY(0) scale(0.98);}
+  .omikuji-box.shake{animation:shake .4s ease;}
+  @keyframes shake{
+    0%,100%{transform:rotate(0);}
+    20%{transform:rotate(-4deg);}
+    40%{transform:rotate(3deg);}
+    60%{transform:rotate(-2deg);}
+    80%{transform:rotate(2deg);}
+  }
+  .omikuji-hint{font-size:.82rem;color:var(--gold-soft); letter-spacing:.1em;}
+
+  .fortune-slip{
+    max-width:420px;
+    background:var(--washi);
+    color:var(--charcoal);
+    border:1px solid var(--gold);
+    padding:26px 28px;
+    border-radius:2px;
+    box-shadow:0 20px 44px rgba(0,0,0,0.35);
+    opacity:0;
+    transform:translateY(14px) scaleY(0.9);
+    transform-origin:top center;
+    transition:opacity .45s ease, transform .45s cubic-bezier(.2,.8,.3,1);
+    position:relative;
+  }
+  .fortune-slip.show{opacity:1; transform:translateY(0) scaleY(1);}
+  .fortune-slip::before{
+    content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:70%;height:4px;background:var(--vermillion);
+  }
+  .fortune-rank{
+    font-family:var(--font-display);
+    color:var(--vermillion);
+    font-weight:800;
+    font-size:1.25rem;
+    margin-bottom:10px;
+    letter-spacing:.15em;
+  }
+  .fortune-text{font-size:.92rem; color:var(--charcoal-soft); line-height:1.85;}
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-head{
+    display:flex;align-items:baseline;gap:18px;
+    margin-bottom:48px;
+  }
+  .section-eyebrow{
+    writing-mode:vertical-rl;
+    font-family:var(--font-display);
+    font-size:.85rem;
+    letter-spacing:.3em;
+    color:var(--vermillion);
+    height:5.4em;
+  }
+  .section-title{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:clamp(1.5rem, 3vw, 2.1rem);
+    letter-spacing:.04em;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{padding:130px 0 100px;}
+  .about-grid{
+    display:grid;grid-template-columns:1.35fr 0.9fr;gap:56px;align-items:start;
+  }
+  .about-body p{margin-bottom:1.3em; color:var(--charcoal-soft); font-size:1rem;}
+  .about-body strong{color:var(--charcoal); font-weight:700;}
+
+  .ema{
+    background:var(--gold-soft);
+    background:linear-gradient(160deg, #e8d6a0, #cbab68);
+    border-radius:2px;
+    padding:30px 26px 34px;
+    position:relative;
+    box-shadow:0 18px 30px rgba(0,0,0,0.12);
+  }
+  .ema::before{
+    content:"";position:absolute;left:50%;top:-14px;transform:translateX(-50%);
+    width:2px;height:16px;background:var(--charcoal-soft);
+  }
+  .ema-stat{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:10px 0;border-bottom:1px dashed rgba(34,30,24,0.25);
+    font-family:var(--font-display);
+  }
+  .ema-stat:last-child{border-bottom:none;}
+  .ema-stat .num{font-size:1.5rem;font-weight:800;color:var(--vermillion-deep);}
+  .ema-stat .label{font-size:.8rem;color:var(--charcoal);letter-spacing:.05em;max-width:9.5em;text-align:right;}
+
+  /* ---------- WORKS ---------- */
+  .works{padding:60px 0 110px;}
+  .work-card{
+    display:grid;grid-template-columns:220px 1fr;gap:36px;
+    padding:38px 0;
+    border-top:1px solid rgba(34,30,24,0.14);
+    align-items:start;
+  }
+  .work-card:last-child{border-bottom:1px solid rgba(34,30,24,0.14);}
+  .work-tag{
+    font-family:var(--font-display);
+    font-size:.82rem;
+    color:var(--washi);
+    background:var(--vermillion);
+    display:inline-block;
+    padding:5px 12px;
+    letter-spacing:.15em;
+    margin-bottom:14px;
+  }
+  .work-card.lantern .work-tag{background:var(--gold);color:var(--charcoal);}
+  .work-card.forecast .work-tag{background:var(--ink);color:var(--washi);}
+  .work-title{
+    font-family:var(--font-display);
+    font-size:1.4rem;font-weight:700;margin-bottom:14px;
+  }
+  .work-desc{color:var(--charcoal-soft); font-size:.94rem; margin-bottom:16px;}
+  .work-stack{display:flex;flex-wrap:wrap;gap:8px;}
+  .work-stack span{
+    font-size:.76rem;
+    border:1px solid rgba(34,30,24,0.3);
+    padding:4px 10px;
+    border-radius:20px;
+    color:var(--charcoal-soft);
+    letter-spacing:.02em;
+  }
+  .work-link{
+    display:inline-block;margin-top:16px;font-size:.82rem;
+    color:var(--vermillion-deep); text-decoration:none;
+    border-bottom:1px solid var(--vermillion-deep);
+    padding-bottom:2px;
+  }
+  .work-note{font-size:.76rem; color:var(--charcoal-soft); opacity:.75; margin-top:14px;}
+
+  /* ---------- SKILLS (stamp book) ---------- */
+  .skills{
+    background:var(--ink);
+    color:var(--washi);
+    padding:110px 0;
+  }
+  .skills .section-title{color:var(--washi);}
+  .skills .section-eyebrow{color:var(--gold);}
+  .stamp-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(150px, 1fr));
+    gap:22px;
+  }
+  .stamp{
+    aspect-ratio:1;
+    border:2px solid var(--vermillion);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    padding:14px;
+    font-family:var(--font-display);
+    font-size:.92rem;
+    letter-spacing:.03em;
+    color:var(--washi-alt);
+    position:relative;
+    transition:transform .25s ease, border-color .25s ease, color .25s ease;
+  }
+  .stamp:hover{
+    transform:rotate(-4deg) scale(1.05);
+    border-color:var(--gold);
+    color:var(--washi);
+  }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact{
+    background:var(--ink-deep);
+    color:var(--washi);
+    padding:110px 0 60px;
+    text-align:center;
+  }
+  .contact h2{
+    font-family:var(--font-display);
+    font-size:clamp(1.6rem,3.4vw,2.3rem);
+    font-weight:800;
+    margin-bottom:20px;
+  }
+  .contact p{color:var(--washi-alt); max-width:32em; margin:0 auto 36px;}
+  .contact-links{
+    display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-bottom:70px;
+  }
+  .contact-links a{
+    border:1px solid var(--gold);
+    padding:12px 26px;
+    border-radius:2px;
+    text-decoration:none;
+    font-size:.88rem;
+    letter-spacing:.1em;
+    color:var(--washi);
+    transition:background .25s ease, color .25s ease;
+  }
+  .contact-links a:hover{background:var(--gold); color:var(--ink-deep);}
+  .footer-note{font-size:.72rem; color:var(--charcoal-soft); border-top:1px solid rgba(241,234,217,0.1); padding-top:24px;}
+
+  /* ---------- REVEAL ANIM ---------- */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width:760px){
+    .about-grid{grid-template-columns:1fr;}
+    .work-card{grid-template-columns:1fr;gap:16px;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <span class="nav-name">個人開発ポートフォリオ</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="stars" id="stars"></div>
+  <svg class="torii" viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="60" y="60" width="480" height="14" fill="#b6924c"/>
+    <rect x="30" y="90" width="540" height="10" fill="#b6924c"/>
+    <rect x="140" y="100" width="22" height="190" fill="#b6924c"/>
+    <rect x="438" y="100" width="22" height="190" fill="#b6924c"/>
+    <rect x="120" y="180" width="360" height="12" fill="#b6924c"/>
+  </svg>
+
+  <p class="eyebrow-vert">個人開発 記録</p>
+  <h1>学んだことを、<br>形にし<span class="accent">続けた</span>記録。</h1>
+  <p class="hero-sub">神社のおみくじ、みんなで遊べるゲーム、天気予報の服装提案——<br>職業訓練で学んだ技術を土台に、企画から実装まで一人で作り続けています。</p>
+
+  <div class="omikuji-zone">
+    <div class="omikuji-box" id="omikujiBox" role="button" tabindex="0" aria-label="おみくじを引く">御神籤</div>
+    <p class="omikuji-hint" id="omikujiHint">クリックして、おみくじを引いてみてください</p>
+    <div class="fortune-slip" id="fortuneSlip">
+      <p class="fortune-rank" id="fortuneRank">大吉</p>
+      <p class="fortune-text" id="fortuneText"></p>
+    </div>
+  </div>
+</header>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-body reveal">
+      <div class="section-head">
+        <span class="section-eyebrow">由緒</span>
+        <h2 class="section-title">作ることに、理由はいらない</h2>
+      </div>
+      <p>HTML/CSS・JavaScript・PHP・Pythonは、職業訓練校で基礎から学びました。授業の課題として作った<strong>神社文化をテーマにしたおみくじサイト</strong>を、そこから一人で改良し続けたのが、個人開発を続けるきっかけになっています。</p>
+      <p>そこから手を広げ、<strong>みんなで遊べるパーティーゲームアプリ</strong>では複数人が同時に遊べる同期処理に、<strong>天気に合わせた服装提案アプリ</strong>では複数の外部APIとAIの組み合わせに、それぞれ一人で向き合ってきました。学んだ基礎を土台にしながら、必要な技術はその都度調べて習得し、企画・設計・実装・公開までを一貫して自分で走り切ってきたことが、これまでの開発でいちばんの強みです。凝り性で、一度手をつけたプロジェクトは機能追加やバグ修正を重ねながら長く育て続けるタイプです。</p>
+    </div>
+    <div class="ema reveal">
+      <div class="ema-stat">
+        <span class="num">3</span>
+        <span class="label">個人開発プロジェクトを並行運用</span>
+      </div>
+      <div class="ema-stat">
+        <span class="num">4</span>
+        <span class="label">パーティーゲームコレクション内の実装ゲーム数</span>
+      </div>
+      <div class="ema-stat">
+        <span class="num">15</span>
+        <span class="label">おみくじアプリの季節イベント数</span>
+      </div>
+      <div class="ema-stat">
+        <span class="num">143</span>
+        <span class="label">王様ゲームのコマンドテンプレート数</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORKS ================= -->
+<section class="works" id="works">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">授与品</span>
+      <h2 class="section-title">Works</h2>
+    </div>
+
+    <article class="work-card reveal">
+      <div>
+        <span class="work-tag">授与所</span>
+        <p class="work-note">職業訓練 課題 → 個人開発 / Firebase・Firestore</p>
+      </div>
+      <div>
+        <h3 class="work-title">神社のおみくじアプリ</h3>
+        <p class="work-desc">職業訓練校の授業課題として作った、神社文化をテーマにしたおみくじサイトが原点。そこから一人で改良を重ね、Firebase/Firestoreでユーザーごとの状態を管理し、丁半博打・神社スロット・境内すごろくなど複数のミニゲームを実装するまでに発展させました。大吉から凶までの確率設計、七夕やお正月など季節ごとのイベント(15種)、招き猫や白蛇といった相棒育成システムまで、機能を継続的に積み上げています。</p>
+        <div class="work-stack">
+          <span>Firebase / Firestore</span>
+          <span>JavaScript(モジュール分割)</span>
+          <span>確率設計</span>
+          <span>PWA</span>
+        </div>
+        <a class="work-link" href="https://s3ima16mura2004-ux.github.io/my-portfolio/" target="_blank" rel="noopener">公開ページを見る →</a>
+      </div>
+    </article>
+
+    <article class="work-card lantern reveal">
+      <div>
+        <span class="work-tag">縁日</span>
+        <p class="work-note">個人開発 / リアルタイム多人数対戦</p>
+      </div>
+      <div>
+        <h3 class="work-title">パーティーゲームコレクション</h3>
+        <p class="work-desc">友人同士など複数人でその場を盛り上げるパーティーゲーム集。王様ゲーム・ブラックジャック・ロシアンルーレット・記憶力ゲームの4種を展開し、Firebaseによるリアルタイム同期でQRコードからその場で参加できる仕組みを構築。振動フィードバックや音声読み上げ、画面スリープ防止など、みんなで盛り上がれる場面を想定した作り込みにこだわりました。</p>
+        <div class="work-stack">
+          <span>Firebase Realtime</span>
+          <span>QRコード連携</span>
+          <span>Web Speech API</span>
+          <span>多人数同期処理</span>
+        </div>
+        <a class="work-link" href="https://s3ima16mura2004-ux.github.io/party-games/" target="_blank" rel="noopener">公開ページを見る →</a>
+      </div>
+    </article>
+
+    <article class="work-card forecast reveal">
+      <div>
+        <span class="work-tag">天気予報</span>
+        <p class="work-note">個人開発 / API統合・AI連携</p>
+      </div>
+      <div>
+        <h3 class="work-title">お天気コーディネート</h3>
+        <p class="work-desc">天気に合わせた服装や持ち物を提案するFlaskアプリ。OpenWeatherMap・Open-Meteo・Google Places・Gemini AIを組み合わせ、並列APIフェッチとキャッシュで応答速度を確保。Geminiの出力を用途別プロンプトで構造化JSON化し、UIに反映する設計にしました。</p>
+        <div class="work-stack">
+          <span>Flask</span>
+          <span>外部API統合</span>
+          <span>Gemini AI</span>
+          <span>Chart.js</span>
+        </div>
+        <a class="work-link" href="https://weather-122f.onrender.com" target="_blank" rel="noopener">公開ページを見る →</a>
+        <p class="work-note" style="margin-top:8px;">※ 無料プランのため、初回アクセス時は起動に数十秒かかる場合があります</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section class="skills" id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">御朱印帳</span>
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <div class="stamp-grid reveal">
+      <div class="stamp">Python<br>(Django / Flask)</div>
+      <div class="stamp">JavaScript</div>
+      <div class="stamp">Firebase<br>Firestore</div>
+      <div class="stamp">Git / GitHub</div>
+      <div class="stamp">外部API<br>統合</div>
+      <div class="stamp">確率・<br>ゲームバランス設計</div>
+      <div class="stamp">Render /<br>GitHub Pages</div>
+      <div class="stamp">レスポンシブ<br>UI設計</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>お問い合わせ</h2>
+    <p>ご興味を持っていただけましたら、お気軽にご連絡ください。</p>
+    <div class="contact-links">
+      <a href="https://github.com/s3ima16mura2004-ux" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:s.3ima.16mura.2004@gmail.com">Email</a>
+    </div>
+    <p class="footer-note">© 2026 個人開発ポートフォリオ</p>
+  </div>
+</section>
+
+<script>
+  // Nav background on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scatter stars in hero
+  const starsWrap = document.getElementById('stars');
+  for (let i = 0; i < 40; i++) {
+    const s = document.createElement('span');
+    s.style.top = Math.random() * 90 + '%';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.animationDelay = (Math.random() * 4) + 's';
+    starsWrap.appendChild(s);
+  }
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Omikuji draw
+  const fortunes = [
+    { rank: '大吉', text: '思いついたら、まず作り始める。それがいちばんの近道でした。' },
+    { rank: '吉', text: '独学は遠回りに見えて、実は一番身につく学び方。' },
+    { rank: '中吉', text: '職業訓練で学んだ基礎を、実際に手を動かして自分のものにしてきました。' },
+    { rank: '小吉', text: '興味の幅が広いぶん、扱える技術の幅も広がってきました。' },
+    { rank: '大吉', text: '動くものを作り、公開し、また直す。その繰り返しが好きです。' }
+  ];
+  const box = document.getElementById('omikujiBox');
+  const slip = document.getElementById('fortuneSlip');
+  const rankEl = document.getElementById('fortuneRank');
+  const textEl = document.getElementById('fortuneText');
+  const hint = document.getElementById('omikujiHint');
+
+  function drawFortune() {
+    box.classList.remove('shake');
+    void box.offsetWidth; // restart animation
+    box.classList.add('shake');
+    const f = fortunes[Math.floor(Math.random() * fortunes.length)];
+    setTimeout(() => {
+      rankEl.textContent = f.rank;
+      textEl.textContent = f.text;
+      slip.classList.add('show');
+      hint.textContent = 'もう一度引く場合はクリックしてください';
+    }, 220);
+  }
+
+  box.addEventListener('click', drawFortune);
+  box.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      drawFortune();
+    }
+  });
+</script>
+
+</body>
+</html>
