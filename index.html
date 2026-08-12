@@ -335,6 +335,43 @@
     align-items:start;
   }
   .work-card:last-child{border-bottom:1px solid rgba(34,30,24,0.14);}
+  .work-media{
+    margin:16px 0 20px;
+    max-width:480px;
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid rgba(34,30,24,0.15);
+    box-shadow:0 10px 24px rgba(0,0,0,0.12);
+  }
+  .work-media img{width:100%;}
+  .work-media-caption{
+    font-size:.72rem;
+    color:var(--charcoal-soft);
+    opacity:.75;
+    margin-top:6px;
+  }
+  .work-media-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin:16px 0 20px;
+    max-width:520px;
+  }
+  .work-media-grid .grid-item{
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid rgba(34,30,24,0.15);
+    box-shadow:0 8px 18px rgba(0,0,0,0.12);
+  }
+  .work-media-grid img{width:100%;display:block;}
+  .work-media-grid .grid-item-label{
+    font-size:.68rem;
+    text-align:center;
+    padding:4px 0;
+    background:var(--ink);
+    color:var(--washi-alt);
+    letter-spacing:.04em;
+  }
   .work-tag{
     font-family:var(--font-display);
     font-size:.82rem;
@@ -369,6 +406,27 @@
   }
   .work-note{font-size:.76rem; color:var(--charcoal-soft); opacity:.75; margin-top:14px;}
 
+  .work-trouble{
+    margin-top:18px;
+    padding:14px 18px;
+    background:rgba(187,58,38,0.06);
+    border-left:3px solid var(--vermillion);
+    border-radius:0 4px 4px 0;
+  }
+  .work-trouble-label{
+    font-family:var(--font-display);
+    font-size:.78rem;
+    color:var(--vermillion-deep);
+    font-weight:700;
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .work-trouble p{
+    font-size:.86rem;
+    color:var(--charcoal-soft);
+    margin:0;
+  }
+
   /* ---------- SKILLS (stamp book) ---------- */
   .skills{
     background:var(--ink);
@@ -402,6 +460,24 @@
     color:var(--washi);
   }
 
+  .cert-heading{
+    font-family:var(--font-display);
+    font-size:1rem;
+    color:var(--gold-soft);
+    letter-spacing:.08em;
+    margin:56px 0 20px;
+  }
+  .cert-list{display:flex; flex-direction:column; gap:0;}
+  .cert-item{
+    display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+    padding:14px 0;
+    border-bottom:1px dashed rgba(241,234,217,0.18);
+    font-size:.92rem;
+  }
+  .cert-item:last-child{border-bottom:none;}
+  .cert-item .cert-name{color:var(--washi-alt);}
+  .cert-item .cert-date{color:var(--gold-soft); font-size:.8rem; white-space:nowrap;}
+
   /* ---------- CONTACT / FOOTER ---------- */
   .contact{
     background:var(--ink-deep);
@@ -416,6 +492,15 @@
     margin-bottom:20px;
   }
   .contact p{color:var(--washi-alt); max-width:32em; margin:0 auto 36px;}
+  .availability{
+    display:inline-block;
+    font-size:.85rem;
+    color:var(--gold-soft);
+    border:1px solid var(--gold);
+    border-radius:20px;
+    padding:8px 20px;
+    margin:0 auto 36px;
+  }
   .contact-links{
     display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-bottom:70px;
   }
@@ -460,6 +545,7 @@
   @media (max-width:760px){
     .about-grid{grid-template-columns:1fr;}
     .profile-grid{grid-template-columns:1fr;gap:32px;}
+    .work-media-grid{grid-template-columns:1fr 1fr; gap:8px;}
     .work-card{grid-template-columns:1fr;gap:16px;}
 
     .nav-toggle{display:block;}
@@ -615,6 +701,9 @@
       </div>
       <div>
         <h3 class="work-title">神社のおみくじアプリ</h3>
+        <div class="work-media">
+          <img src="images/omikuji.gif" alt="おみくじアプリでおみくじを引いて結果が表示されるまでの操作画面" loading="lazy">
+        </div>
         <p class="work-desc">職業訓練校の授業課題として作った、神社文化をテーマにしたおみくじサイトが原点。そこから一人で改良を重ね、Firebase/Firestoreでユーザーごとの状態を管理し、丁半博打・神社スロット・境内すごろくなど複数のミニゲームを実装するまでに発展させました。大吉から凶までの確率設計、七夕やお正月など季節ごとのイベント(15種)、招き猫や白蛇といった相棒育成システムまで、機能を継続的に積み上げています。</p>
         <div class="work-stack">
           <span>Firebase / Firestore</span>
@@ -623,6 +712,10 @@
           <span>PWA</span>
         </div>
         <a class="work-link" href="https://s3ima16mura2004-ux.github.io/my-portfolio/" target="_blank" rel="noopener">公開ページを見る →</a>
+        <div class="work-trouble">
+          <p class="work-trouble-label">🔧 つまずいた点</p>
+          <p>レアな当たりの出現確率に違和感があり、実際に自分でひたすらプレイを繰り返して検証。上位ランクの当選判定が下位ランクの抽選結果に影響してしまう「確率のカスケードバグ」を突き止め、計算ロジックを修正しました。</p>
+        </div>
       </div>
     </article>
 
@@ -633,6 +726,24 @@
       </div>
       <div>
         <h3 class="work-title">パーティーゲームコレクション</h3>
+        <div class="work-media-grid">
+          <div class="grid-item">
+            <img src="images/kingsgame.gif" alt="王様ゲームの役割ルーレットを回している画面" loading="lazy">
+            <p class="grid-item-label">王様ゲーム</p>
+          </div>
+          <div class="grid-item">
+            <img src="images/blackjack.gif" alt="パーティーブラックジャックの参加人数を決める画面" loading="lazy">
+            <p class="grid-item-label">ブラックジャック</p>
+          </div>
+          <div class="grid-item">
+            <img src="images/roulette.gif" alt="ロシアンルーレットのチャレンジ選択画面" loading="lazy">
+            <p class="grid-item-label">ロシアンルーレット</p>
+          </div>
+          <div class="grid-item">
+            <img src="images/memory.gif" alt="罰ゲーム神経衰弱でカードをめくっている画面" loading="lazy">
+            <p class="grid-item-label">記憶ゲーム</p>
+          </div>
+        </div>
         <p class="work-desc">友人同士など複数人でその場を盛り上げるパーティーゲーム集。王様ゲーム・ブラックジャック・ロシアンルーレット・記憶力ゲームの4種を展開し、Firebaseによるリアルタイム同期でQRコードからその場で参加できる仕組みを構築。振動フィードバックや音声読み上げ、画面スリープ防止など、みんなで盛り上がれる場面を想定した作り込みにこだわりました。</p>
         <div class="work-stack">
           <span>Firebase Realtime</span>
@@ -651,15 +762,22 @@
       </div>
       <div>
         <h3 class="work-title">お天気コーディネート</h3>
-        <p class="work-desc">天気に合わせた服装や持ち物を提案するFlaskアプリ。OpenWeatherMap・Open-Meteo・Google Places・Gemini AIを組み合わせ、並列APIフェッチとキャッシュで応答速度を確保。Geminiの出力を用途別プロンプトで構造化JSON化し、UIに反映する設計にしました。</p>
+        <div class="work-media">
+          <img src="images/weather.png" alt="お天気コーディネートアプリの画面。現在の天気、5日間の天気、気温・降水確率のグラフ、AIによる服装アドバイスが表示されている" loading="lazy">
+        </div>
+        <p class="work-desc">天気に合わせた服装や持ち物を提案するFlaskアプリ。OpenWeatherMap・Open-Meteo・Google Places・AI(Groq)を組み合わせ、並列APIフェッチとキャッシュで応答速度を確保。AIの出力を用途別プロンプトで構造化JSON化し、UIに反映する設計にしました。</p>
         <div class="work-stack">
           <span>Flask</span>
           <span>外部API統合</span>
-          <span>Gemini AI</span>
+          <span>Groq AI</span>
           <span>Chart.js</span>
         </div>
         <a class="work-link" href="https://weather-122f.onrender.com" target="_blank" rel="noopener">公開ページを見る →</a>
         <p class="work-note" style="margin-top:8px;">※ 無料プランのため、初回アクセス時は起動に数十秒かかる場合があります</p>
+        <div class="work-trouble">
+          <p class="work-trouble-label">🔧 つまずいた点</p>
+          <p>当初はGemini AIでアドバイスを生成していましたが、無料枠のクォータが原因不明のまま機能しなくなる問題に直面。ログとGoogle Cloud側の設定を1つずつ切り分けて調査し、最終的にGroq APIへ移行することでAI機能を復旧させました。</p>
+        </div>
       </div>
     </article>
   </div>
@@ -682,6 +800,22 @@
       <div class="stamp">Render /<br>GitHub Pages</div>
       <div class="stamp">レスポンシブ<br>UI設計</div>
     </div>
+
+    <p class="cert-heading reveal">職業訓練中に取得した資格</p>
+    <div class="cert-list reveal">
+      <div class="cert-item">
+        <span class="cert-name">Webクリエイター能力認定試験 エキスパート</span>
+        <span class="cert-date">2026年6月</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-name">コンピュータサービス技能評価試験 ワープロ部門2級</span>
+        <span class="cert-date">2026年6月</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-name">コンピュータサービス技能評価試験 表計算部門2級</span>
+        <span class="cert-date">2026年7月</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -690,6 +824,7 @@
   <div class="wrap">
     <h2>お問い合わせ</h2>
     <p>ご興味を持っていただけましたら、お気軽にご連絡ください。</p>
+    <p class="availability">フルタイム勤務希望 ／ 2026年9月から稼働可能です</p>
     <div class="contact-links">
       <a href="https://github.com/s3ima16mura2004-ux" target="_blank" rel="noopener">GitHub</a>
       <a href="mailto:s.3ima.16mura.2004@gmail.com">Email</a>
