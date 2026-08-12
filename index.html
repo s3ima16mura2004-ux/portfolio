@@ -41,6 +41,18 @@
   .wrap{max-width:1040px;margin:0 auto;padding:0 28px;}
   :focus-visible{outline:3px solid var(--vermillion); outline-offset:3px;}
 
+  /* ---------- SKIP LINK (accessibility) ---------- */
+  .skip-link{
+    position:absolute;top:-60px;left:16px;z-index:200;
+    background:var(--washi);color:var(--charcoal);
+    padding:12px 20px;border-radius:4px;
+    font-size:.85rem;letter-spacing:.04em;
+    text-decoration:none;
+    transition:top .2s ease;
+    border:2px solid var(--vermillion);
+  }
+  .skip-link:focus{top:16px;}
+
   /* ---------- NAV ---------- */
   .nav{
     position:fixed;top:0;left:0;right:0;z-index:50;
@@ -75,7 +87,30 @@
     content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
     background:var(--gold);transition:width .3s ease;
   }
-  .nav-links a:hover::after{width:100%;}
+  .nav-links a:hover::after, .nav-links a:focus-visible::after{width:100%;}
+
+  /* Mobile nav toggle */
+  .nav-toggle{
+    display:none;
+    background:none;border:1px solid var(--gold-soft);
+    border-radius:4px;
+    width:42px;height:38px;
+    padding:0;
+    cursor:pointer;
+    position:relative;
+    flex-shrink:0;
+  }
+  .nav-toggle span{
+    position:absolute;left:10px;right:10px;height:2px;
+    background:var(--washi);
+    transition:transform .25s ease, opacity .25s ease, top .25s ease;
+  }
+  .nav-toggle span:nth-child(1){top:13px;}
+  .nav-toggle span:nth-child(2){top:19px;}
+  .nav-toggle span:nth-child(3){top:25px;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){top:19px; transform:rotate(45deg);}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){top:19px; transform:rotate(-45deg);}
 
   /* ---------- HERO ---------- */
   .hero{
@@ -356,27 +391,90 @@
   .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
 
+  /* ---------- BACK TO TOP ---------- */
+  .to-top{
+    position:fixed;
+    right:20px;bottom:20px;
+    width:48px;height:48px;
+    border-radius:50%;
+    background:var(--vermillion);
+    color:var(--washi);
+    border:none;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.2rem;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    opacity:0; pointer-events:none;
+    transform:translateY(10px);
+    transition:opacity .3s ease, transform .3s ease, background .2s ease;
+    z-index:60;
+  }
+  .to-top.show{opacity:1; pointer-events:auto; transform:translateY(0);}
+  .to-top:hover{background:var(--vermillion-deep);}
+
   @media (max-width:760px){
     .about-grid{grid-template-columns:1fr;}
     .work-card{grid-template-columns:1fr;gap:16px;}
-    .nav-links{display:none;}
+
+    .nav-toggle{display:block;}
+    .nav-links{
+      display:flex;
+      flex-direction:column;
+      position:fixed;
+      top:0;right:0;
+      height:100vh;
+      width:min(78vw, 300px);
+      background:var(--ink-deep);
+      padding:100px 32px 32px;
+      gap:8px;
+      transform:translateX(100%);
+      transition:transform .3s ease;
+      box-shadow:-10px 0 30px rgba(0,0,0,0.35);
+    }
+    .nav-links.open{transform:translateX(0);}
+    .nav-links a{
+      display:block;
+      padding:16px 4px;
+      font-size:1.05rem;
+      border-bottom:1px solid rgba(241,234,217,0.12);
+    }
+    .nav-overlay{
+      display:none;
+      position:fixed;inset:0;
+      background:rgba(11,18,32,0.55);
+      z-index:45;
+    }
+    .nav-overlay.open{display:block;}
+
+    .hero{padding:120px 20px 70px;}
+    .omikuji-box{width:130px;height:130px;font-size:1.05rem;}
+    .section-head{gap:12px;}
+    .ema-stat .label{max-width:11em;}
+    .to-top{right:14px;bottom:14px;width:44px;height:44px;}
   }
+
 </style>
 </head>
 <body>
 
+<a href="#main" class="skip-link">本文へスキップ</a>
+
 <nav class="nav" id="nav">
   <span class="nav-name">個人開発ポートフォリオ</span>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="メニューを開く">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
     <li><a href="#works">Works</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
+<div class="nav-overlay" id="navOverlay"></div>
 
 <!-- ================= HERO ================= -->
-<header class="hero">
+<header class="hero" id="main">
   <div class="stars" id="stars"></div>
   <svg class="torii" viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <rect x="60" y="60" width="480" height="14" fill="#b6924c"/>
@@ -530,12 +628,51 @@
   </div>
 </section>
 
+<button class="to-top" id="toTop" aria-label="ページの先頭に戻る">↑</button>
+
 <script>
   // Nav background on scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  const navOverlay = document.getElementById('navOverlay');
+
+  function closeMenu() {
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'メニューを開く');
+    navLinks.classList.remove('open');
+    navOverlay.classList.remove('open');
+  }
+  function openMenu() {
+    navToggle.setAttribute('aria-expanded', 'true');
+    navToggle.setAttribute('aria-label', 'メニューを閉じる');
+    navLinks.classList.add('open');
+    navOverlay.classList.add('open');
+  }
+  navToggle.addEventListener('click', () => {
+    const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+    isOpen ? closeMenu() : openMenu();
+  });
+  navOverlay.addEventListener('click', closeMenu);
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // Back to top button
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    toTop.classList.toggle('show', window.scrollY > 600);
+  });
+  toTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
 
   // Scatter stars in hero
   const starsWrap = document.getElementById('stars');
