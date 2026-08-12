@@ -477,6 +477,21 @@
   .cert-item:last-child{border-bottom:none;}
   .cert-item .cert-name{color:var(--washi-alt);}
   .cert-item .cert-date{color:var(--gold-soft); font-size:.8rem; white-space:nowrap;}
+  .cert-item.in-progress .cert-date{
+    color:var(--washi);
+    background:var(--vermillion);
+    padding:3px 10px;
+    border-radius:12px;
+    font-size:.72rem;
+  }
+  .cert-item.planned .cert-date{
+    color:var(--gold-soft);
+    background:none;
+    border:1px solid var(--gold);
+    padding:2px 10px;
+    border-radius:12px;
+    font-size:.72rem;
+  }
 
   /* ---------- CONTACT / FOOTER ---------- */
   .contact{
@@ -814,6 +829,14 @@
       <div class="cert-item">
         <span class="cert-name">コンピュータサービス技能評価試験 表計算部門2級</span>
         <span class="cert-date">2026年7月</span>
+      </div>
+      <div class="cert-item in-progress">
+        <span class="cert-name">ITパスポート試験</span>
+        <span class="cert-date">学習中</span>
+      </div>
+      <div class="cert-item planned">
+        <span class="cert-name">生成AIパスポート</span>
+        <span class="cert-date">挑戦予定</span>
       </div>
     </div>
   </div>
