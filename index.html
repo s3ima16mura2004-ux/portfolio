@@ -3,27 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>今村彩恵 | 個人開発ポートフォリオ</title>
-<meta name="description" content="職業訓練校でWeb開発を学んだ今村彩恵の個人開発ポートフォリオ。神社のおみくじアプリ、パーティーゲームコレクション、お天気コーディネートの3作品を掲載しています。">
-
-<!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="images/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
-
-<!-- OGP / SNSシェア用 -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="今村彩恵 | 個人開発ポートフォリオ">
-<meta property="og:description" content="職業訓練校でWeb開発を学んだ今村彩恵の個人開発ポートフォリオ。神社のおみくじアプリ、パーティーゲームコレクション、お天気コーディネートの3作品を掲載しています。">
-<meta property="og:image" content="https://s3ima16mura2004-ux.github.io/portfolio/images/ogp.png">
-<meta property="og:url" content="https://s3ima16mura2004-ux.github.io/portfolio/">
-<meta property="og:locale" content="ja_JP">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="今村彩恵 | 個人開発ポートフォリオ">
-<meta name="twitter:description" content="職業訓練校でWeb開発を学んだ今村彩恵の個人開発ポートフォリオ。">
-<meta name="twitter:image" content="https://s3ima16mura2004-ux.github.io/portfolio/images/ogp.png">
-
+<title>個人開発ポートフォリオ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -43,8 +23,7 @@
     --font-body: "Zen Kaku Gothic New", sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  *,*::before,*::after{max-width:100%;}
-  html{scroll-behavior:smooth; overflow-x:hidden; width:100%;}
+  html{scroll-behavior:smooth;}
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
@@ -55,26 +34,12 @@
     color:var(--charcoal);
     line-height:1.9;
     overflow-x:hidden;
-    width:100%;
-    max-width:100vw;
   }
   a{color:inherit;}
   img{max-width:100%;display:block;}
   section{position:relative;}
   .wrap{max-width:1040px;margin:0 auto;padding:0 28px;}
   :focus-visible{outline:3px solid var(--vermillion); outline-offset:3px;}
-
-  /* ---------- SKIP LINK (accessibility) ---------- */
-  .skip-link{
-    position:absolute;top:-60px;left:16px;z-index:200;
-    background:var(--washi);color:var(--charcoal);
-    padding:12px 20px;border-radius:4px;
-    font-size:.85rem;letter-spacing:.04em;
-    text-decoration:none;
-    transition:top .2s ease;
-    border:2px solid var(--vermillion);
-  }
-  .skip-link:focus{top:16px;}
 
   /* ---------- NAV ---------- */
   .nav{
@@ -110,30 +75,7 @@
     content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
     background:var(--gold);transition:width .3s ease;
   }
-  .nav-links a:hover::after, .nav-links a:focus-visible::after{width:100%;}
-
-  /* Mobile nav toggle */
-  .nav-toggle{
-    display:none;
-    background:none;border:1px solid var(--gold-soft);
-    border-radius:4px;
-    width:42px;height:38px;
-    padding:0;
-    cursor:pointer;
-    position:relative;
-    flex-shrink:0;
-  }
-  .nav-toggle span{
-    position:absolute;left:10px;right:10px;height:2px;
-    background:var(--washi);
-    transition:transform .25s ease, opacity .25s ease, top .25s ease;
-  }
-  .nav-toggle span:nth-child(1){top:13px;}
-  .nav-toggle span:nth-child(2){top:19px;}
-  .nav-toggle span:nth-child(3){top:25px;}
-  .nav-toggle[aria-expanded="true"] span:nth-child(1){top:19px; transform:rotate(45deg);}
-  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
-  .nav-toggle[aria-expanded="true"] span:nth-child(3){top:19px; transform:rotate(-45deg);}
+  .nav-links a:hover::after{width:100%;}
 
   /* ---------- HERO ---------- */
   .hero{
@@ -275,51 +217,6 @@
     letter-spacing:.04em;
   }
 
-  /* ---------- PROFILE ---------- */
-  .profile{padding:100px 0 40px;}
-  .profile-grid{
-    display:grid;grid-template-columns:0.85fr 1.35fr;gap:56px;align-items:center;
-  }
-  .profile-card{
-    background:linear-gradient(160deg, #fbf7ec, #ece1c6);
-    border-radius:2px;
-    padding:40px 30px;
-    text-align:center;
-    box-shadow:0 18px 30px rgba(0,0,0,0.10);
-    position:relative;
-  }
-  .hanko{
-    width:64px;height:64px;
-    margin:0 auto 20px;
-    border-radius:50%;
-    border:2.5px solid var(--vermillion);
-    color:var(--vermillion);
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--font-display);
-    font-size:1.6rem;font-weight:800;
-    transform:rotate(-6deg);
-    box-shadow:inset 0 0 0 2px rgba(187,58,38,0.15);
-  }
-  .profile-name{
-    font-family:var(--font-display);
-    font-size:1.5rem;font-weight:700;
-    letter-spacing:.1em;
-    margin-bottom:22px;
-  }
-  .profile-tags{
-    display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
-  }
-  .profile-tags span{
-    font-size:.78rem;
-    border:1px solid var(--gold);
-    color:var(--charcoal-soft);
-    padding:5px 12px;
-    border-radius:20px;
-    letter-spacing:.03em;
-  }
-  .profile-body p{margin-bottom:1.3em; color:var(--charcoal-soft); font-size:1rem;}
-  .profile-body p:last-child{margin-bottom:0;}
-
   /* ---------- ABOUT ---------- */
   .about{padding:130px 0 100px;}
   .about-grid{
@@ -358,43 +255,6 @@
     align-items:start;
   }
   .work-card:last-child{border-bottom:1px solid rgba(34,30,24,0.14);}
-  .work-media{
-    margin:16px 0 20px;
-    max-width:480px;
-    border-radius:4px;
-    overflow:hidden;
-    border:1px solid rgba(34,30,24,0.15);
-    box-shadow:0 10px 24px rgba(0,0,0,0.12);
-  }
-  .work-media img{width:100%;}
-  .work-media-caption{
-    font-size:.72rem;
-    color:var(--charcoal-soft);
-    opacity:.75;
-    margin-top:6px;
-  }
-  .work-media-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin:16px 0 20px;
-    max-width:520px;
-  }
-  .work-media-grid .grid-item{
-    border-radius:4px;
-    overflow:hidden;
-    border:1px solid rgba(34,30,24,0.15);
-    box-shadow:0 8px 18px rgba(0,0,0,0.12);
-  }
-  .work-media-grid img{width:100%;display:block;}
-  .work-media-grid .grid-item-label{
-    font-size:.68rem;
-    text-align:center;
-    padding:4px 0;
-    background:var(--ink);
-    color:var(--washi-alt);
-    letter-spacing:.04em;
-  }
   .work-tag{
     font-family:var(--font-display);
     font-size:.82rem;
@@ -407,6 +267,7 @@
   }
   .work-card.lantern .work-tag{background:var(--gold);color:var(--charcoal);}
   .work-card.forecast .work-tag{background:var(--ink);color:var(--washi);}
+  .work-card.stage .work-tag{background:linear-gradient(120deg, var(--vermillion), var(--gold));color:var(--washi);}
   .work-title{
     font-family:var(--font-display);
     font-size:1.4rem;font-weight:700;margin-bottom:14px;
@@ -428,27 +289,6 @@
     padding-bottom:2px;
   }
   .work-note{font-size:.76rem; color:var(--charcoal-soft); opacity:.75; margin-top:14px;}
-
-  .work-trouble{
-    margin-top:18px;
-    padding:14px 18px;
-    background:rgba(187,58,38,0.06);
-    border-left:3px solid var(--vermillion);
-    border-radius:0 4px 4px 0;
-  }
-  .work-trouble-label{
-    font-family:var(--font-display);
-    font-size:.78rem;
-    color:var(--vermillion-deep);
-    font-weight:700;
-    letter-spacing:.08em;
-    margin-bottom:6px;
-  }
-  .work-trouble p{
-    font-size:.86rem;
-    color:var(--charcoal-soft);
-    margin:0;
-  }
 
   /* ---------- SKILLS (stamp book) ---------- */
   .skills{
@@ -483,58 +323,6 @@
     color:var(--washi);
   }
 
-  .cert-heading{
-    font-family:var(--font-display);
-    font-size:1rem;
-    color:var(--gold-soft);
-    letter-spacing:.08em;
-    margin:56px 0 20px;
-  }
-  .cert-list{display:flex; flex-direction:column; gap:0;}
-  .cert-item{
-    display:flex;justify-content:space-between;align-items:baseline;gap:16px;
-    padding:14px 0;
-    border-bottom:1px dashed rgba(241,234,217,0.18);
-    font-size:.92rem;
-  }
-  .cert-item:last-child{border-bottom:none;}
-  .cert-item .cert-name{color:var(--washi-alt);}
-  .cert-item .cert-date{color:var(--gold-soft); font-size:.8rem; white-space:nowrap;}
-  .cert-item.in-progress .cert-date{
-    color:var(--washi);
-    background:var(--vermillion);
-    padding:3px 10px;
-    border-radius:12px;
-    font-size:.72rem;
-  }
-  .cert-item.planned .cert-date{
-    color:var(--gold-soft);
-    background:none;
-    border:1px solid var(--gold);
-    padding:2px 10px;
-    border-radius:12px;
-    font-size:.72rem;
-  }
-
-  .github-activity{margin-top:56px;}
-  .github-activity-heading{
-    font-family:var(--font-display);
-    font-size:1rem;
-    color:var(--gold-soft);
-    letter-spacing:.08em;
-    margin-bottom:18px;
-  }
-  .github-activity-chart{
-    background:var(--ink-deep);
-    border:1px solid rgba(241,234,217,0.12);
-    border-radius:6px;
-    padding:18px;
-    overflow-x:auto;
-    max-width:100%;
-    -webkit-overflow-scrolling:touch;
-  }
-  .github-activity-chart img{min-width:640px; width:100%; max-width:none;}
-
   /* ---------- CONTACT / FOOTER ---------- */
   .contact{
     background:var(--ink-deep);
@@ -549,15 +337,6 @@
     margin-bottom:20px;
   }
   .contact p{color:var(--washi-alt); max-width:32em; margin:0 auto 36px;}
-  .availability{
-    display:inline-block;
-    font-size:.85rem;
-    color:var(--gold-soft);
-    border:1px solid var(--gold);
-    border-radius:20px;
-    padding:8px 20px;
-    margin:0 auto 36px;
-  }
   .contact-links{
     display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-bottom:70px;
   }
@@ -578,104 +357,27 @@
   .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
 
-  /* ---------- BACK TO TOP ---------- */
-  .to-top{
-    position:fixed;
-    right:20px;bottom:20px;
-    width:48px;height:48px;
-    border-radius:50%;
-    background:var(--vermillion);
-    color:var(--washi);
-    border:none;
-    display:flex;align-items:center;justify-content:center;
-    font-size:1.2rem;
-    cursor:pointer;
-    box-shadow:0 8px 20px rgba(0,0,0,0.25);
-    opacity:0; pointer-events:none;
-    transform:translateY(10px);
-    transition:opacity .3s ease, transform .3s ease, background .2s ease;
-    z-index:60;
-  }
-  .to-top.show{opacity:1; pointer-events:auto; transform:translateY(0);}
-  .to-top:hover{background:var(--vermillion-deep);}
-
   @media (max-width:760px){
     .about-grid{grid-template-columns:1fr;}
-    .profile-grid{grid-template-columns:1fr;gap:32px;}
-    .work-media-grid{grid-template-columns:1fr 1fr; gap:8px;}
-    .stamp-grid{grid-template-columns:1fr 1fr; gap:14px;}
-    .stamp{font-size:.82rem; padding:10px;}
     .work-card{grid-template-columns:1fr;gap:16px;}
-
-    .nav-toggle{display:block;}
-    .nav-links{
-      display:flex;
-      flex-direction:column;
-      position:fixed;
-      top:0;right:0;
-      height:100vh;
-      width:min(78vw, 300px);
-      background:var(--ink-deep);
-      padding:100px 32px 32px;
-      gap:8px;
-      opacity:0;
-      visibility:hidden;
-      pointer-events:none;
-      transform:translateY(-10px);
-      transition:opacity .25s ease, transform .25s ease, visibility 0s linear .25s;
-      box-shadow:-10px 0 30px rgba(0,0,0,0.35);
-    }
-    .nav-links.open{
-      opacity:1;
-      visibility:visible;
-      pointer-events:auto;
-      transform:translateY(0);
-      transition:opacity .25s ease, transform .25s ease;
-    }
-    .nav-links a{
-      display:block;
-      padding:16px 4px;
-      font-size:1.05rem;
-      border-bottom:1px solid rgba(241,234,217,0.12);
-    }
-    .nav-overlay{
-      display:none;
-      position:fixed;inset:0;
-      background:rgba(11,18,32,0.55);
-      z-index:45;
-    }
-    .nav-overlay.open{display:block;}
-
-    .hero{padding:120px 20px 70px;}
-    .omikuji-box{width:130px;height:130px;font-size:1.05rem;}
-    .section-head{gap:12px;}
-    .ema-stat .label{max-width:11em;}
-    .to-top{right:14px;bottom:14px;width:44px;height:44px;}
+    .nav-links{display:none;}
   }
-
 </style>
 </head>
 <body>
 
-<a href="#main" class="skip-link">本文へスキップ</a>
-
 <nav class="nav" id="nav">
-  <span class="nav-name">今村彩恵</span>
-  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="メニューを開く">
-    <span></span><span></span><span></span>
-  </button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#profile">Profile</a></li>
+  <span class="nav-name">個人開発ポートフォリオ</span>
+  <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#works">Works</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
-<div class="nav-overlay" id="navOverlay"></div>
 
 <!-- ================= HERO ================= -->
-<header class="hero" id="main">
+<header class="hero">
   <div class="stars" id="stars"></div>
   <svg class="torii" viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <rect x="60" y="60" width="480" height="14" fill="#b6924c"/>
@@ -699,29 +401,6 @@
   </div>
 </header>
 
-<!-- ================= PROFILE ================= -->
-<section class="profile" id="profile">
-  <div class="wrap profile-grid">
-    <div class="profile-card reveal">
-      <div class="hanko">彩</div>
-      <p class="profile-name">今村 彩恵</p>
-      <div class="profile-tags">
-        <span>ジグソーパズル</span>
-        <span>カラオケ</span>
-        <span>アニメ鑑賞</span>
-      </div>
-    </div>
-    <div class="profile-body reveal">
-      <div class="section-head">
-        <span class="section-eyebrow">人となり</span>
-        <h2 class="section-title">自己紹介</h2>
-      </div>
-      <p>コツコツと物事に取り組むタイプで、集中すると時間を忘れるくらいのめり込んでしまいます。休みの日はジグソーパズルやカラオケ、アニメ鑑賞で気分転換をしながら、開発以外の時間も大切にしています。</p>
-      <p>与えられた仕事は完璧に仕上げたい気持ちが強いのですが、100%を目指しすぎると手が止まってしまうこともあるため、8割程度まで進めた時点で一度確認してもらうようにするなど、自分なりのバランスの取り方を意識しています。今後はより多くの知識やスキル・経験を積み重ねながら、着実に成長していきたいと考えています。</p>
-    </div>
-  </div>
-</section>
-
 <!-- ================= ABOUT ================= -->
 <section class="about" id="about">
   <div class="wrap about-grid">
@@ -730,13 +409,12 @@
         <span class="section-eyebrow">由緒</span>
         <h2 class="section-title">作ることに、理由はいらない</h2>
       </div>
-      <p>前職では、精密機械の梱包や学生服の縫製、伝票処理などの事務補助に携わってきました。細かい仕様に正確に合わせる縫製作業や、チームで声を掛け合いながら生産目標を達成する製造現場での経験を通じて、丁寧さと集中力を培ってきました。新しい分野に挑戦したいという思いから職業訓練校でWeb開発を学び始め、今はその経験を活かしながら個人開発を続けています。</p>
       <p>HTML/CSS・JavaScript・PHP・Pythonは、職業訓練校で基礎から学びました。授業の課題として作った<strong>神社文化をテーマにしたおみくじサイト</strong>を、そこから一人で改良し続けたのが、個人開発を続けるきっかけになっています。</p>
       <p>そこから手を広げ、<strong>みんなで遊べるパーティーゲームアプリ</strong>では複数人が同時に遊べる同期処理に、<strong>天気に合わせた服装提案アプリ</strong>では複数の外部APIとAIの組み合わせに、それぞれ一人で向き合ってきました。学んだ基礎を土台にしながら、必要な技術はその都度調べて習得し、企画・設計・実装・公開までを一貫して自分で走り切ってきたことが、これまでの開発でいちばんの強みです。凝り性で、一度手をつけたプロジェクトは機能追加やバグ修正を重ねながら長く育て続けるタイプです。</p>
     </div>
     <div class="ema reveal">
       <div class="ema-stat">
-        <span class="num">3</span>
+        <span class="num">4</span>
         <span class="label">個人開発プロジェクトを並行運用</span>
       </div>
       <div class="ema-stat">
@@ -767,13 +445,9 @@
       <div>
         <span class="work-tag">授与所</span>
         <p class="work-note">職業訓練 課題 → 個人開発 / Firebase・Firestore</p>
-        <p class="work-note">開発期間:約1.5ヶ月(継続改良中)</p>
       </div>
       <div>
         <h3 class="work-title">神社のおみくじアプリ</h3>
-        <div class="work-media">
-          <img src="images/omikuji.gif" alt="おみくじアプリでおみくじを引いて結果が表示されるまでの操作画面" loading="lazy">
-        </div>
         <p class="work-desc">職業訓練校の授業課題として作った、神社文化をテーマにしたおみくじサイトが原点。そこから一人で改良を重ね、Firebase/Firestoreでユーザーごとの状態を管理し、丁半博打・神社スロット・境内すごろくなど複数のミニゲームを実装するまでに発展させました。大吉から凶までの確率設計、七夕やお正月など季節ごとのイベント(15種)、招き猫や白蛇といった相棒育成システムまで、機能を継続的に積み上げています。</p>
         <div class="work-stack">
           <span>Firebase / Firestore</span>
@@ -782,10 +456,6 @@
           <span>PWA</span>
         </div>
         <a class="work-link" href="https://s3ima16mura2004-ux.github.io/my-portfolio/" target="_blank" rel="noopener">公開ページを見る →</a>
-        <div class="work-trouble">
-          <p class="work-trouble-label">🔧 つまずいた点</p>
-          <p>レアな当たりの出現確率に違和感があり、実際に自分でひたすらプレイを繰り返して検証。上位ランクの当選判定が下位ランクの抽選結果に影響してしまう「確率のカスケードバグ」を突き止め、計算ロジックを修正しました。</p>
-        </div>
       </div>
     </article>
 
@@ -793,28 +463,9 @@
       <div>
         <span class="work-tag">縁日</span>
         <p class="work-note">個人開発 / リアルタイム多人数対戦</p>
-        <p class="work-note">開発期間:約半月</p>
       </div>
       <div>
         <h3 class="work-title">パーティーゲームコレクション</h3>
-        <div class="work-media-grid">
-          <div class="grid-item">
-            <img src="images/kingsgame.gif" alt="王様ゲームの役割ルーレットを回している画面" loading="lazy">
-            <p class="grid-item-label">王様ゲーム</p>
-          </div>
-          <div class="grid-item">
-            <img src="images/blackjack.gif" alt="パーティーブラックジャックの参加人数を決める画面" loading="lazy">
-            <p class="grid-item-label">ブラックジャック</p>
-          </div>
-          <div class="grid-item">
-            <img src="images/roulette.gif" alt="ロシアンルーレットのチャレンジ選択画面" loading="lazy">
-            <p class="grid-item-label">ロシアンルーレット</p>
-          </div>
-          <div class="grid-item">
-            <img src="images/memory.gif" alt="罰ゲーム神経衰弱でカードをめくっている画面" loading="lazy">
-            <p class="grid-item-label">記憶ゲーム</p>
-          </div>
-        </div>
         <p class="work-desc">友人同士など複数人でその場を盛り上げるパーティーゲーム集。王様ゲーム・ブラックジャック・ロシアンルーレット・記憶力ゲームの4種を展開し、Firebaseによるリアルタイム同期でQRコードからその場で参加できる仕組みを構築。振動フィードバックや音声読み上げ、画面スリープ防止など、みんなで盛り上がれる場面を想定した作り込みにこだわりました。</p>
         <div class="work-stack">
           <span>Firebase Realtime</span>
@@ -830,26 +481,36 @@
       <div>
         <span class="work-tag">天気予報</span>
         <p class="work-note">個人開発 / API統合・AI連携</p>
-        <p class="work-note">開発期間:約半月</p>
       </div>
       <div>
         <h3 class="work-title">お天気コーディネート</h3>
-        <div class="work-media">
-          <img src="images/weather.png" alt="お天気コーディネートアプリの画面。現在の天気、5日間の天気、気温・降水確率のグラフ、AIによる服装アドバイスが表示されている" loading="lazy">
-        </div>
-        <p class="work-desc">天気に合わせた服装や持ち物を提案するFlaskアプリ。OpenWeatherMap・Open-Meteo・Google Places・AI(Groq)を組み合わせ、並列APIフェッチとキャッシュで応答速度を確保。AIの出力を用途別プロンプトで構造化JSON化し、UIに反映する設計にしました。</p>
+        <p class="work-desc">天気に合わせた服装や持ち物を提案するFlaskアプリ。OpenWeatherMap・Open-Meteo・Google Places・Gemini AIを組み合わせ、並列APIフェッチとキャッシュで応答速度を確保。Geminiの出力を用途別プロンプトで構造化JSON化し、UIに反映する設計にしました。</p>
         <div class="work-stack">
           <span>Flask</span>
           <span>外部API統合</span>
-          <span>Groq AI</span>
+          <span>Gemini AI</span>
           <span>Chart.js</span>
         </div>
         <a class="work-link" href="https://weather-122f.onrender.com" target="_blank" rel="noopener">公開ページを見る →</a>
         <p class="work-note" style="margin-top:8px;">※ 無料プランのため、初回アクセス時は起動に数十秒かかる場合があります</p>
-        <div class="work-trouble">
-          <p class="work-trouble-label">🔧 つまずいた点</p>
-          <p>当初はGemini AIでアドバイスを生成していましたが、無料枠のクォータが原因不明のまま機能しなくなる問題に直面。ログとGoogle Cloud側の設定を1つずつ切り分けて調査し、最終的にGroq APIへ移行することでAI機能を復旧させました。</p>
+      </div>
+    </article>
+
+    <article class="work-card stage reveal">
+      <div>
+        <span class="work-tag">十八番</span>
+        <p class="work-note">個人開発 / ミニゲーム・DOM操作</p>
+      </div>
+      <div>
+        <h3 class="work-title">ライブステージ・タイピング</h3>
+        <p class="work-desc">1分間のスコアアタック形式のタイピングゲーム。表示された単語をローマ字で打ち切るたびに客席のペンライトが1本ずつ灯り、単語を打ち切るとスポットライトが弾ける、打鍵ごとの視覚フィードバックにこだわって作りました。ローマ字の表記ゆれ（じょうねつ→jounetsu / zyounetsuなど）を吸収する簡易的な入力判定ロジックを自作し、物理キーボードのない端末向けにオンスクリーンキーボードも実装しています。</p>
+        <div class="work-stack">
+          <span>JavaScript(DOM操作)</span>
+          <span>CSSアニメーション</span>
+          <span>タッチ/レスポンシブ対応</span>
+          <span>入力判定ロジック設計</span>
         </div>
+        <a class="work-link" href="https://s3ima16mura2004-ux.github.io/typing/" target="_blank" rel="noopener">公開ページを見る →</a>
       </div>
     </article>
   </div>
@@ -872,37 +533,6 @@
       <div class="stamp">Render /<br>GitHub Pages</div>
       <div class="stamp">レスポンシブ<br>UI設計</div>
     </div>
-
-    <p class="cert-heading reveal">職業訓練中に取得した資格</p>
-    <div class="cert-list reveal">
-      <div class="cert-item">
-        <span class="cert-name">Webクリエイター能力認定試験 エキスパート</span>
-        <span class="cert-date">2026年6月</span>
-      </div>
-      <div class="cert-item">
-        <span class="cert-name">コンピュータサービス技能評価試験 ワープロ部門2級</span>
-        <span class="cert-date">2026年6月</span>
-      </div>
-      <div class="cert-item">
-        <span class="cert-name">コンピュータサービス技能評価試験 表計算部門2級</span>
-        <span class="cert-date">2026年7月</span>
-      </div>
-      <div class="cert-item in-progress">
-        <span class="cert-name">ITパスポート試験</span>
-        <span class="cert-date">学習中</span>
-      </div>
-      <div class="cert-item planned">
-        <span class="cert-name">生成AIパスポート</span>
-        <span class="cert-date">挑戦予定</span>
-      </div>
-    </div>
-
-    <div class="github-activity reveal">
-      <p class="github-activity-heading">GitHubでの活動記録</p>
-      <div class="github-activity-chart">
-        <img src="https://ghchart.rshah.org/bb3a26/s3ima16mura2004-ux" alt="s3ima16mura2004-uxのGitHub活動グラフ" loading="lazy">
-      </div>
-    </div>
   </div>
 </section>
 
@@ -911,7 +541,6 @@
   <div class="wrap">
     <h2>お問い合わせ</h2>
     <p>ご興味を持っていただけましたら、お気軽にご連絡ください。</p>
-    <p class="availability">フルタイム勤務希望 ／ 2026年9月から稼働可能です</p>
     <div class="contact-links">
       <a href="https://github.com/s3ima16mura2004-ux" target="_blank" rel="noopener">GitHub</a>
       <a href="mailto:s.3ima.16mura.2004@gmail.com">Email</a>
@@ -920,51 +549,12 @@
   </div>
 </section>
 
-<button class="to-top" id="toTop" aria-label="ページの先頭に戻る">↑</button>
-
 <script>
   // Nav background on scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   });
-
-  // Mobile nav toggle
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
-  const navOverlay = document.getElementById('navOverlay');
-
-  function closeMenu() {
-    navToggle.setAttribute('aria-expanded', 'false');
-    navToggle.setAttribute('aria-label', 'メニューを開く');
-    navLinks.classList.remove('open');
-    navOverlay.classList.remove('open');
-  }
-  function openMenu() {
-    navToggle.setAttribute('aria-expanded', 'true');
-    navToggle.setAttribute('aria-label', 'メニューを閉じる');
-    navLinks.classList.add('open');
-    navOverlay.classList.add('open');
-  }
-  navToggle.addEventListener('click', () => {
-    const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
-    isOpen ? closeMenu() : openMenu();
-  });
-  navOverlay.addEventListener('click', closeMenu);
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
-  });
-
-  // Back to top button
-  const toTop = document.getElementById('toTop');
-  window.addEventListener('scroll', () => {
-    toTop.classList.toggle('show', window.scrollY > 600);
-  });
-  toTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
 
   // Scatter stars in hero
   const starsWrap = document.getElementById('stars');
