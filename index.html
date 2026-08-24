@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>今村彩恵 | 個人開発ポートフォリオ</title>
-<meta name="description" content="職業訓練校でWeb開発を学んだ今村彩恵の個人開発ポートフォリオ。神社のおみくじアプリ、パーティーゲームコレクション、お天気コーディネートの3作品を掲載しています。">
+<meta name="description" content="職業訓練校でWeb開発を学んだ今村彩恵の個人開発ポートフォリオ。神社のおみくじアプリ、パーティーゲームコレクション、お天気コーディネート、ライブステージ・タイピングの4作品を掲載しています。">
 
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
@@ -15,7 +15,7 @@
 <!-- OGP / SNSシェア用 -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="今村彩恵 | 個人開発ポートフォリオ">
-<meta property="og:description" content="職業訓練校でWeb開発を学んだ今村彩恵の個人開発ポートフォリオ。神社のおみくじアプリ、パーティーゲームコレクション、お天気コーディネートの3作品を掲載しています。">
+<meta property="og:description" content="職業訓練校でWeb開発を学んだ今村彩恵の個人開発ポートフォリオ。神社のおみくじアプリ、パーティーゲームコレクション、お天気コーディネート、ライブステージ・タイピングの4作品を掲載しています。">
 <meta property="og:image" content="https://s3ima16mura2004-ux.github.io/portfolio/images/ogp.png">
 <meta property="og:url" content="https://s3ima16mura2004-ux.github.io/portfolio/">
 <meta property="og:locale" content="ja_JP">
@@ -387,6 +387,20 @@
     box-shadow:0 8px 18px rgba(0,0,0,0.12);
   }
   .work-media-grid img{width:100%;display:block;}
+  .work-media-grid.two-col{max-width:640px;}
+  .work-media-grid.two-col .grid-item{
+    display:flex;
+    flex-direction:column;
+    height:380px;
+  }
+  .work-media-grid.two-col .grid-item img{
+    flex:1 1 auto;
+    min-height:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:var(--ink-deep);
+  }
   .work-media-grid .grid-item-label{
     font-size:.68rem;
     text-align:center;
@@ -407,6 +421,7 @@
   }
   .work-card.lantern .work-tag{background:var(--gold);color:var(--charcoal);}
   .work-card.forecast .work-tag{background:var(--ink);color:var(--washi);}
+  .work-card.stage .work-tag{background:var(--vermillion-deep);color:var(--washi);}
   .work-title{
     font-family:var(--font-display);
     font-size:1.4rem;font-weight:700;margin-bottom:14px;
@@ -603,6 +618,7 @@
     .about-grid{grid-template-columns:1fr;}
     .profile-grid{grid-template-columns:1fr;gap:32px;}
     .work-media-grid{grid-template-columns:1fr 1fr; gap:8px;}
+    .work-media-grid.two-col .grid-item{height:220px;}
     .stamp-grid{grid-template-columns:1fr 1fr; gap:14px;}
     .stamp{font-size:.82rem; padding:10px;}
     .work-card{grid-template-columns:1fr;gap:16px;}
@@ -736,7 +752,7 @@
     </div>
     <div class="ema reveal">
       <div class="ema-stat">
-        <span class="num">3</span>
+        <span class="num">4</span>
         <span class="label">個人開発プロジェクトを並行運用</span>
       </div>
       <div class="ema-stat">
@@ -852,6 +868,34 @@
         </div>
       </div>
     </article>
+
+    <article class="work-card stage reveal">
+      <div>
+        <span class="work-tag">舞台</span>
+        <p class="work-note">個人開発 / タイピングゲーム・Firebaseオンライン対戦</p>
+      </div>
+      <div>
+        <h3 class="work-title">ライブステージ・タイピング</h3>
+        <div class="work-media-grid two-col">
+          <div class="grid-item">
+            <img src="images/typing.gif" alt="ライブステージ・タイピングのPC版プレイ画面。HYPEゲージとボスワード演出が表示されている" loading="lazy">
+            <p class="grid-item-label">PC版</p>
+          </div>
+          <div class="grid-item">
+            <img src="images/typing-mobile.gif" alt="ライブステージ・タイピングのスマホ版。フリック入力用の専用キーボードが表示されている" loading="lazy">
+            <p class="grid-item-label">スマホ版(フリック入力)</p>
+          </div>
+        </div>
+        <p class="work-desc">音楽ライブをテーマにしたタイピングゲーム。かな入力とローマ字入力の両方に対応し、shi/si・tsu/tuといった表記ゆれや長音表記も自動で吸収する仕組みを実装。かんたん〜エキスパートの4段階の難易度、コンボが伸びるほどバンド演奏が盛り上がっていく演出、26種類の称号(実績)システムを搭載し、Firestoreを使った部屋番号方式のオンライン対戦にも対応しています。</p>
+        <div class="work-stack">
+          <span>JavaScript(モジュール分割)</span>
+          <span>Firebase Firestore</span>
+          <span>Web Audio API</span>
+          <span>フリック入力UI</span>
+        </div>
+        <a class="work-link" href="https://s3ima16mura2004-ux.github.io/typing/" target="_blank" rel="noopener">公開ページを見る →</a>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -871,6 +915,7 @@
       <div class="stamp">確率・<br>ゲームバランス設計</div>
       <div class="stamp">Render /<br>GitHub Pages</div>
       <div class="stamp">レスポンシブ<br>UI設計</div>
+      <div class="stamp">Web Audio<br>API</div>
     </div>
 
     <p class="cert-heading reveal">職業訓練中に取得した資格</p>
